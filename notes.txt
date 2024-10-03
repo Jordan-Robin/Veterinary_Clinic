@@ -1,0 +1,29 @@
+encoder le mot de passe pas dans le setter de l'entité mais dans le service de gestion des utilisateurs :
+@Service
+public class StaffService {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public StaffService(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public void registerStaff(Staff staff) {
+        // Hachage du mot de passe avant de sauvegarder l'utilisateur
+        String encodedPassword = passwordEncoder.encode(staff.getPassword());
+        staff.setPassword(encodedPassword);
+
+        // Sauvegarder l'utilisateur dans la base de données via un repository
+        // staffRepository.save(staff);
+    }
+}
+
+
+
+Utiliser @Transactional
+
+
+faire une procédure stockée
+
+
+Faire interfaces pour la DAL. Faire aussi pour services ?

@@ -39,6 +39,9 @@ out/
 ### Environment ###
 .env
 
+### Notes ###
+/src/main/resources/*.txt
+
 ### Java ###
 
 # Compiled class file
