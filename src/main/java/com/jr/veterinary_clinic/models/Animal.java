@@ -16,9 +16,20 @@ public class Animal {
     private Client owner;
     private List<Agenda> appointmentsList = new ArrayList<Agenda>();
 
-    public Animal() {}
+    public Animal() {
+    }
 
-    public Animal(String name, String sex, String color, String tattoo, String antecedent, boolean active, Breed breed, Client owner, List<Agenda> appointmentsList) {
+    public Animal(
+            String name,
+            String sex,
+            String color,
+            String tattoo,
+            String antecedent,
+            boolean active,
+            Breed breed,
+            Client owner,
+            List<Agenda> appointmentsList
+                 ) throws IllegalArgumentException {
         this.setName(name);
         this.setSex(sex);
         this.setColor(color);
@@ -30,7 +41,18 @@ public class Animal {
         this.setAppointmentsList(appointmentsList);
     }
 
-    public Animal(int id, String name, String sex, String color, String tattoo, String antecedent, boolean active, Breed breed, Client owner, List<Agenda> appointmentsList) {
+    public Animal(
+            int id,
+            String name,
+            String sex,
+            String color,
+            String tattoo,
+            String antecedent,
+            boolean active,
+            Breed breed,
+            Client owner,
+            List<Agenda> appointmentsList
+                 ) throws IllegalArgumentException {
         this.setId(id);
         this.setName(name);
         this.setSex(sex);
@@ -63,8 +85,13 @@ public class Animal {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    // TODO T.U
+    public void setSex(String sex) throws IllegalArgumentException {
+        if (!"M".equals(sex) && !"F".equals(sex) && !"H".equals(sex)) {
+            throw new IllegalArgumentException();
+        } else {
+            this.sex = sex;
+        }
     }
 
     public String getColor() {

@@ -1,5 +1,7 @@
 package com.jr.veterinary_clinic.models;
 
+import com.jr.veterinary_clinic.services.utils.RegexUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +14,11 @@ public class Staff {
     private boolean active;
     private List<Authority> authorities = new ArrayList<Authority>();
 
-    public Staff() {}
+    public Staff() {
+    }
 
-    public Staff(String name, String mail, String password, boolean active, List<Authority> authorities) {
+    public Staff(String name, String mail, String password, boolean active, List<Authority> authorities)
+            throws IllegalArgumentException {
         this.setName(name);
         this.setMail(mail);
         this.setPassword(password);
@@ -22,7 +26,8 @@ public class Staff {
         this.setAuthorities(authorities);
     }
 
-    public Staff(int id, String name, String mail, String password, boolean active, List<Authority> authorities) {
+    public Staff(int id, String name, String mail, String password, boolean active, List<Authority> authorities)
+            throws IllegalArgumentException {
         this.setId(id);
         this.setName(name);
         this.setMail(mail);
@@ -51,14 +56,20 @@ public class Staff {
         return mail;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    // TODO T.U
+    public void setMail(String mail) throws IllegalArgumentException {
+        if (!RegexUtil.isValidEmail(mail)) {
+            throw new IllegalArgumentException("L'email " + mail + " n'est pas valide.");
+        } else {
+            this.mail = mail;
+        }
     }
 
     public String getPassword() {
         return password;
     }
 
+    // TODO regex ?
     public void setPassword(String password) {
         this.password = password;
     }
