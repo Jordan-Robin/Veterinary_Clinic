@@ -19,6 +19,7 @@ CREATE TABLE Staff
         CONSTRAINT un_staff_mail UNIQUE,
     password VARCHAR(68)        NOT NULL,
     active   BIT                NOT NULL
+        CONSTRAINT df_staff_active DEFAULT 1
 );
 
 CREATE TABLE Authorities
@@ -42,17 +43,20 @@ CREATE TABLE Clients
 (
     id         INT IDENTITY (1,1) NOT NULL
         CONSTRAINT pk_clients PRIMARY KEY,
-    last_name  VARCHAR(20),
-    first_name VARCHAR(20),
+    last_name  VARCHAR(20)        NOT NULL,
+    first_name VARCHAR(20)        NOT NULL,
     address1   VARCHAR(30)        NULL,
     address2   VARCHAR(30)        NULL,
     postcode   VARCHAR(6)         NULL,
     city       VARCHAR(25)        NULL,
-    phone      VARCHAR(15)        NULL,
+    phone      VARCHAR(15)        NULL
+        CONSTRAINT un_clients_phone UNIQUE,
     insurance  VARCHAR(30)        NULL,
-    mail       VARCHAR(20)        NULL,
+    mail       VARCHAR(20)        NULL
+        CONSTRAINT un_clients_mail UNIQUE,
     comment    VARCHAR(1000)      NULL,
     active     BIT                NOT NULL
+        CONSTRAINT df_clients_active DEFAULT 1
 );
 
 CREATE TABLE Breeds
@@ -78,6 +82,7 @@ CREATE TABLE Animals
     tattoo     VARCHAR(10)        NOT NULL,
     antecedent VARCHAR(1000)      NULL,
     active     BIT                NOT NULL
+        CONSTRAINT df_animals_active DEFAULT 1
 );
 
 CREATE TABLE Agendas

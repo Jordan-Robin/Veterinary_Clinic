@@ -1,6 +1,7 @@
 package com.jr.veterinary_clinic.models;
 
 import com.jr.veterinary_clinic.services.utils.RegexUtil;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 public class Client {
 
     private int id;
+    @NotBlank
     private String lastName;
     private String firstName;
     private String address1;
@@ -35,7 +37,7 @@ public class Client {
                   String mail,
                   String comment,
                   boolean active,
-                  List<Animal> animals) throws IllegalArgumentException {
+                  List<Animal> animals) {
         this.setLastName(lastName);
         this.setFirstName(firstName);
         this.setAddress1(address1);
@@ -62,7 +64,7 @@ public class Client {
                   String mail,
                   String comment,
                   boolean active,
-                  List<Animal> animals) throws IllegalArgumentException {
+                  List<Animal> animals) {
         this.setId(id);
         this.setLastName(lastName);
         this.setFirstName(firstName);
@@ -155,7 +157,7 @@ public class Client {
     }
 
     // TODO T.U
-    public void setMail(String mail) throws IllegalArgumentException {
+    public void setMail(String mail) {
         if (!RegexUtil.isValidEmail(mail)) {
             throw new IllegalArgumentException("L'email " + mail + " est invalide.");
         } else {

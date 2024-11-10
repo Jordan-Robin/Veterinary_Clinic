@@ -17,8 +17,7 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(String name, String mail, String password, boolean active, List<Authority> authorities)
-            throws IllegalArgumentException {
+    public Staff(String name, String mail, String password, boolean active, List<Authority> authorities) {
         this.setName(name);
         this.setMail(mail);
         this.setPassword(password);
@@ -26,8 +25,7 @@ public class Staff {
         this.setAuthorities(authorities);
     }
 
-    public Staff(int id, String name, String mail, String password, boolean active, List<Authority> authorities)
-            throws IllegalArgumentException {
+    public Staff(int id, String name, String mail, String password, boolean active, List<Authority> authorities) {
         this.setId(id);
         this.setName(name);
         this.setMail(mail);
@@ -57,7 +55,7 @@ public class Staff {
     }
 
     // TODO T.U
-    public void setMail(String mail) throws IllegalArgumentException {
+    public void setMail(String mail) {
         if (!RegexUtil.isValidEmail(mail)) {
             throw new IllegalArgumentException("L'email " + mail + " n'est pas valide.");
         } else {

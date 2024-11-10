@@ -7,11 +7,11 @@ public class Authority {
 
     public Authority () {}
 
-    public Authority(String role) throws IllegalArgumentException {
+    public Authority(String role) {
         this.setRole(role);
     }
 
-    public Authority(int id, String role) throws IllegalArgumentException {
+    public Authority(int id, String role) {
         this.setId(id);
         this.setRole(role);
     }
@@ -29,7 +29,7 @@ public class Authority {
     }
 
     // TODO T.U
-    public void setRole(String role) throws IllegalArgumentException {
+    public void setRole(String role) {
         if (!"ROLE_SEC".equals(role) && !"ROLE_VET".equals(role) && !"ROLE_ADM".equals(role)) {
             throw new IllegalArgumentException("Le rôle doit être égal à 'ROLE_SEC', 'ROLE_VET' ou 'ROLE_ADM'.");
         } else {

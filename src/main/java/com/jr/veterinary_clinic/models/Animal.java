@@ -29,7 +29,7 @@ public class Animal {
             Breed breed,
             Client owner,
             List<Agenda> appointmentsList
-                 ) throws IllegalArgumentException {
+                 ) {
         this.setName(name);
         this.setSex(sex);
         this.setColor(color);
@@ -52,7 +52,7 @@ public class Animal {
             Breed breed,
             Client owner,
             List<Agenda> appointmentsList
-                 ) throws IllegalArgumentException {
+                 ) {
         this.setId(id);
         this.setName(name);
         this.setSex(sex);
@@ -86,7 +86,7 @@ public class Animal {
     }
 
     // TODO T.U
-    public void setSex(String sex) throws IllegalArgumentException {
+    public void setSex(String sex) {
         if (!"M".equals(sex) && !"F".equals(sex) && !"H".equals(sex)) {
             throw new IllegalArgumentException();
         } else {

@@ -1,0 +1,13 @@
+<html lang="fr" data-th-replace="~{layouts/layout :: layout(title=~{:: title}, main=~{:: main})}">
+
+<title>Nouveau client</title>
+
+<main>
+  <form method="post" data-th-action="@{/clients/nouveau}" data-th-object="${client}">
+  <h1>Ajoutez un client :</h1>
+    <label for="lastName">Nom :</label>
+    <input type="text" id="lastName" data-th-field="*{lastName}" required>
+    
+    <button type="submit">Envoyer</button>
+  </form>
+</main>
