@@ -23,9 +23,9 @@ CREATE TABLE Staff
 
 CREATE TABLE Authorities
 (
-    id INT IDENTITY (1,1) NOT NULL
+    id   INT IDENTITY (1,1) NOT NULL
         CONSTRAINT pk_authorities PRIMARY KEY,
-    role    VARCHAR(8)         NOT NULL
+    role VARCHAR(8)         NOT NULL
         CONSTRAINT ck_staff_role CHECK (role IN ('ROLE_SEC', 'ROLE_VET', 'ROLE_ADM'))
 );
 
@@ -57,9 +57,10 @@ CREATE TABLE Clients
 
 CREATE TABLE Breeds
 (
-    breed   VARCHAR(20) NOT NULL,
-    species VARCHAR(20) NOT NULL,
-    CONSTRAINT pk_breeds PRIMARY KEY (breed, species)
+    id      INT IDENTITY (1,1) NOT NULL
+        CONSTRAINT pk_breeds PRIMARY KEY,
+    breed   VARCHAR(20)        NOT NULL,
+    species VARCHAR(20)        NOT NULL
 );
 
 CREATE TABLE Animals
@@ -70,14 +71,13 @@ CREATE TABLE Animals
     sex        VARCHAR(1)         NOT NULL
         CONSTRAINT ck_animals_sex CHECK (sex IN ('M', 'F', 'H')),
     color      VARCHAR(20)        NULL,
-    breed      VARCHAR(20)        NOT NULL,
-    species    VARCHAR(20)        NOT NULL,
+    breed_id   INT                NOT NULL
+        CONSTRAINT fk_animals_breeds REFERENCES Breeds (id),
     client_id  INT                NOT NULL
         CONSTRAINT fk_animals_clients REFERENCES Clients (id),
     tattoo     VARCHAR(10)        NOT NULL,
     antecedent VARCHAR(1000)      NULL,
-    active     BIT                NOT NULL,
-    CONSTRAINT fk_animals_breeds FOREIGN KEY (breed, species) REFERENCES Breeds (breed, species)
+    active     BIT                NOT NULL
 );
 
 CREATE TABLE Agendas
@@ -94,7 +94,8 @@ CREATE TABLE Agendas
 -- INSERT DATAS
 
 INSERT INTO Staff (name, mail, password, active)
-VALUES (N'Mélanie MALALANICH', 'melanie-malalanich@vet.com', '$2a$10$ea8mS9Jkra8xXOn82oDk6e0oqFJbyMom5pAfnLgTYK7qVBJw5GJwK', 1);--password : malalanich
+VALUES (N'Mélanie MALALANICH', 'melanie-malalanich@vet.com',
+        '$2a$10$ea8mS9Jkra8xXOn82oDk6e0oqFJbyMom5pAfnLgTYK7qVBJw5GJwK', 1);--password : malalanich
 INSERT INTO Staff (name, mail, password, active)
 VALUES ('Anne AIMONE', 'anne-aimone@vet.com', '$2a$10$ZZ/G7OJWtQD8YwxOb1/YhOlTEZlnsHrbdIuXkwPxzgeyjhdIesSii', 1);--password : aimone
 INSERT INTO Staff (name, mail, password, active)
@@ -102,11 +103,14 @@ VALUES ('Sylvain TOURNE', 'sylvain-tourne@vet.com', '$2a$10$Lsk4Nw4YgbzvfP3jojnh
 INSERT INTO Staff (name, mail, password, active)
 VALUES ('Odette DE JEU', 'odette-dejeu@vet.com', '$2a$10$lVPq.//YS1UhC3hjG6Y.1uR4wFhbb3jA5ctR88fTfjDSbIAByyzsy', 1);--password : dejeu
 INSERT INTO Staff (name, mail, password, active)
-VALUES ('Elisabeth ABONDIEU', 'elisabeth-abondieu@vet.com', '$2a$10$2.3ZJDLQuj4tpPb5264ZVeHQ159dvclC6ScAnGZlgiOlTm0kCQ2DO', 1);--password : abondieu
+VALUES ('Elisabeth ABONDIEU', 'elisabeth-abondieu@vet.com',
+        '$2a$10$2.3ZJDLQuj4tpPb5264ZVeHQ159dvclC6ScAnGZlgiOlTm0kCQ2DO', 1);--password : abondieu
 INSERT INTO Staff (name, mail, password, active)
-VALUES ('Marie Paule HISSON', 'mariepaule-hisson@vet.com', '$2a$10$SiNJ4.zHSFSKYwe7fytGweq5dD5n.Ilm2jHmmzWnMOFaZzP1ysOKi', 1);--password : hisson
+VALUES ('Marie Paule HISSON', 'mariepaule-hisson@vet.com',
+        '$2a$10$SiNJ4.zHSFSKYwe7fytGweq5dD5n.Ilm2jHmmzWnMOFaZzP1ysOKi', 1);--password : hisson
 INSERT INTO Staff (name, mail, password, active)
-VALUES (N'Benoît DE CAJOU', 'benoit-decajou@vet.com', '$2a$10$j2i92vi8T76Fa60Inq50De6P/b28kQPjcwG6eYliOJW8CdT3tsdgq', 1);--password : decajou
+VALUES (N'Benoît DE CAJOU', 'benoit-decajou@vet.com', '$2a$10$j2i92vi8T76Fa60Inq50De6P/b28kQPjcwG6eYliOJW8CdT3tsdgq',
+        1);--password : decajou
 
 INSERT INTO Authorities (role)
 VALUES ('ROLE_SEC');
